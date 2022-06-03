@@ -7,7 +7,7 @@ import 'package:pollution/shared/styles/colors.dart';
 import 'package:http/http.dart' as http;
 
 import '../shared/components/components.dart';
-import '../shared/components/constants.dart';
+import '../shared/network/end_points.dart';
 class BoardingModel{
   late final String image;
   late final String title;

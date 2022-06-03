@@ -12,8 +12,8 @@ import '../../models/user_model.dart';
 import '../../modules/circle_chart.dart';
 import '../../modules/profile_screen.dart';
 import '../../modules/save_screen.dart';
-import '../components/constants.dart';
 import '../components/global_variable.dart';
+import '../network/end_points.dart';
 import '../network/remote/dio_helper.dart';
 
 class AppCubit extends Cubit<AppStates>{
