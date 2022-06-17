@@ -45,18 +45,11 @@ class RegisterScreen extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: Row(
-              children: [
-                const CircleAvatar(
-                  radius: 25,
-                  child: Text('B'),
-                ),
-                defaultWidthSizeBox,
-                Text(
-                  'Team Name',
-                  style: Theme.of(context).textTheme.bodyText1,
-                ),
-              ],
+            title: Text(
+              'Pollution Detection',
+              style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                color: Colors.white
+              ),
             ),
           ),
           body: Center(
@@ -148,7 +141,7 @@ class RegisterScreen extends StatelessWidget {
                                 );
                               }
                             },
-                            text: 'register'
+                            text: 'signup'
                         ),
                         fallback: (context) => const Center(child: CircularProgressIndicator()),
                       ),

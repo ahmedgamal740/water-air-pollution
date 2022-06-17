@@ -1,6 +1,5 @@
 
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
@@ -30,7 +29,13 @@ class AllRecordsScreen extends StatelessWidget {
                   child: Text('An error has occurred!'),
                 );
               } else if (snapshot.hasData) {
-                return RecordList(model: snapshot.data!);
+                // List modelValue = [];
+                // snapshot.data!.forEach((element) {
+                //   modelValue.addAll(element.value!);
+                // });
+                return RecordList(
+                    model: snapshot.data!,
+                );
               } else {
                 return const Center(
                   child: CircularProgressIndicator(),
@@ -48,12 +53,13 @@ class RecordList extends StatelessWidget {
 
   final List<AllRecordModel> model;
 
-  const RecordList({Key? key, required this.model}) : super(key: key);
+  RecordList({Key? key, required this.model}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
         physics: const BouncingScrollPhysics(),
+        shrinkWrap: true,
         itemBuilder: (context, index) => buildRecordItem(context, model[index] ),
         separatorBuilder: (context, index) => const SizedBox(),
         itemCount: model.length);
@@ -64,7 +70,7 @@ class RecordList extends StatelessWidget {
       children: [
         Expanded(
           child: Container(
-          height: 137,
+          height: 110,
           decoration: BoxDecoration(
             borderRadius:const BorderRadiusDirectional.only(
                 topStart:Radius.circular(4),
@@ -79,74 +85,59 @@ class RecordList extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Row(
-                  children: [
-                    Text(
-                      'Name: ',
-                      style: TextStyle(
-                        color: greyTextColor,
-                      ),
-                    ),
-                    defaultWidthSizeBox,
-                    Text(
-                      '${model.feedKey}',
-                      style: Theme.of(context).textTheme.bodyText1?.copyWith(
-                        color: textColor
-                      ),
-                    ),
-                  ],
-                ),
-                defaultHeightSizeBox,
-                Row(
-                  children: [
-                    Text(
-                      'Create at: ',
-                      style: TextStyle(
-                        color: greyTextColor,
-                      ),
-                    ),
-                    defaultWidthSizeBox,
-                    Expanded(
-                      child: Text(
-                        '${model.createdAt}',
-                        maxLines: 1,
-                        overflow: TextOverflow.clip,
-                        style: Theme.of(context).textTheme.bodyText1?.copyWith(
-                            color: textColor
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Row(
+                    children: [
+                      Text(
+                        'Name: ',
+                        style: TextStyle(
+                          color: greyTextColor,
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                defaultHeightSizeBox,
-                Row(
-                  children: [
-                    Text(
-                      'Expiration: ',
-                      style: TextStyle(
-                        color: greyTextColor,
-                      ),
-                    ),
-                    defaultWidthSizeBox,
-                    Expanded(
-                      child: Text(
-                        '${model.expiration}',
-                        maxLines: 1,
-                        overflow: TextOverflow.clip,
+                      defaultWidthSizeBox,
+                      Text(
+                        '${model.sensorName}',
                         style: Theme.of(context).textTheme.bodyText1?.copyWith(
-                            color: textColor
+                          color: textColor
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
+                defaultHeightSizeBox,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Row(
+                    children: [
+                      Text(
+                        'Create at: ',
+                        style: TextStyle(
+                          color: greyTextColor,
+                        ),
+                      ),
+                      defaultWidthSizeBox,
+                      Expanded(
+                        child: Text(
+                          '${model.dateTime}',
+                          maxLines: 1,
+                          overflow: TextOverflow.clip,
+                          style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                              color: textColor
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                //defaultHeightSizeBox,
               ],
             ),
           ),
       ),
         ),
         Container(
-          height: 137,
+          height: 110,
           width: 90,
           decoration: BoxDecoration(
             borderRadius:const BorderRadiusDirectional.only(
@@ -163,7 +154,7 @@ class RecordList extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 //sound sensor
-                if(model.feedKey == 'sound' && model.value! > 100)
+                if(model.sensorName == 'Sound' && model.value! > 100)
                   Text(
                   '${model.value}',
                   style: const TextStyle(
@@ -171,7 +162,7 @@ class RecordList extends StatelessWidget {
                       fontWeight: FontWeight.bold
                   ),
                 ),
-                if(model.feedKey == 'sound' && model.value! <= 100)
+                if(model.sensorName == 'Sound' && model.value! <= 100)
                   Text(
                     '${model.value}',
                     style: const TextStyle(
@@ -180,32 +171,32 @@ class RecordList extends StatelessWidget {
                     ),
                   ),
                 //phmeter sensor
-                if(model.feedKey == 'phmeter' && (model.value! >= 5 && model.value! < 10))
+                if(model.sensorName == 'PhMeter' && (model.value! >= 5 && model.value! < 10))
                   Text(
-                    '${model.value}',
+                    '${model.value!.roundToDouble()}',
                     style: const TextStyle(
                       color: primaryColor2,
                       fontWeight: FontWeight.bold
                     ),
                   ),
-                if(model.feedKey == 'phmeter' && (model.value! >= 10 && model.value! >= 5))
+                if(model.sensorName == 'PhMeter' && (model.value! >= 10 && model.value! >= 5))
                   Text(
-                    '${model.value}',
+                    '${model.value!.roundToDouble()}',
                     style: TextStyle(
                       color: primaryColor3,
                         fontWeight: FontWeight.bold
                     ),
                   ),
-                if(model.feedKey == 'phmeter' && model.value! < 5)
+                if(model.sensorName == 'PhMeter' && model.value! < 5)
                   Text(
-                    '${model.value}',
+                    '${model.value!.roundToDouble()}',
                     style: const TextStyle(
                       color: primaryColor1,
                         fontWeight: FontWeight.bold
                     ),
                   ),
                 //gas sensor
-                if(model.feedKey == 'gas' && model.value! > 300)
+                if(model.sensorName == 'Gaz' && model.value! > 300)
                   Text(
                     '${model.value}',
                     style: const TextStyle(
@@ -213,7 +204,7 @@ class RecordList extends StatelessWidget {
                         fontWeight: FontWeight.bold
                     ),
                   ),
-                if(model.feedKey == 'gas' && model.value! <= 300)
+                if(model.sensorName == 'Gaz' && model.value! <= 300)
                   Text(
                     '${model.value}',
                     style: const TextStyle(
@@ -222,7 +213,7 @@ class RecordList extends StatelessWidget {
                     ),
                   ),
                 //turbidity sensor
-                if(model.feedKey == 'turbidity' && model.value! > 700)
+                if(model.sensorName == 'Turbidity' && model.value! > 700)
                   Text(
                     '${model.value}',
                     style: const TextStyle(
@@ -230,7 +221,7 @@ class RecordList extends StatelessWidget {
                         fontWeight: FontWeight.bold
                     ),
                   ),
-                if(model.feedKey == 'turbidity' && model.value! <= 700)
+                if(model.sensorName == 'Turbidity' && model.value! <= 700)
                   Text(
                     '${model.value}',
                     style: const TextStyle(
@@ -246,3 +237,11 @@ class RecordList extends StatelessWidget {
     ),
   );
 }
+
+// Container(
+// width: 300.0,
+// height: 100.0,
+// child: Sparkline(
+// data: data,
+// ),
+// ),

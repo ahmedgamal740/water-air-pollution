@@ -1,38 +1,28 @@
+// {
+// "id": 148,
+// "value": 220,
+// "dateTime": "2022-06-16T12:20:11.1873642",
+// "sensorName": "Gaz"
+// }
 class SensorModel {
-  String? id;
-  int? feedId;
-  double? value;
-  dynamic location;
-  String? createdAt;
-  String? updatedAt;
-  String? expiration;
-  dynamic lat;
-  dynamic lon;
-  dynamic ele;
+  int? id;
+  dynamic value;
+  String? dateTime;
+  String? sensorName;
 
   SensorModel(
-      {this.id,
-        this.feedId,
+      {
+        this.id,
         this.value,
-        this.location,
-        this.createdAt,
-        this.updatedAt,
-        this.expiration,
-        this.lat,
-        this.lon,
-        this.ele});
+        this.dateTime,
+        this.sensorName,
+      });
 
   SensorModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    feedId = json['feed_id'];
-    value = double.parse(json['value']);
-    location = json['location'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
-    expiration = json['expiration'];
-    lat = json['lat'];
-    lon = json['lon'];
-    ele = json['ele'];
+    dateTime = json['dateTime'];
+    value = json['value'];
+    sensorName = json['sensorName'];
   }
 
 

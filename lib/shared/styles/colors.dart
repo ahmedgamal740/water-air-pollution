@@ -7,4 +7,4 @@ const primaryColor2 = Colors.green;
 Color primaryColor3 = HexColor('#0546ad');
 Color greyTextColor =  HexColor('#696761');
 Color textColor =  HexColor('#1E1E1C');
-Color borderColor =  HexColor('#362a3b');
+Color borderColor =  HexColor('#929CA7');

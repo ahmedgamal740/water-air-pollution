@@ -1,5 +1,3 @@
-
-
 import 'package:circle_chart/circle_chart.dart';
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
@@ -7,8 +5,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pollution/shared/components/global_variable.dart';
 import 'package:pollution/shared/cubit/cubit.dart';
 import 'package:pollution/shared/cubit/states.dart';
+import '../shared/components/components.dart';
 import '../shared/components/constants.dart';
 import '../shared/styles/colors.dart';
+import 'control_panel_screen.dart';
 
 
 class CircleChartScreen extends StatelessWidget {
@@ -65,7 +65,7 @@ class CircleChartScreen extends StatelessWidget {
                             child: chart(
                                 name: 'Ph Meter',
                                 maxNumber: 14,
-                                progressNumber: cubit.phMeterModel!.value
+                                progressNumber: cubit.phMeterModel!.value!.roundToDouble()
                             ),
                           ),
                         ),
@@ -87,7 +87,7 @@ class CircleChartScreen extends StatelessWidget {
                             child: chart(
                                 name: 'Turbidity',
                                 maxNumber: 1000,
-                                progressNumber: cubit.turbidityModel!.value
+                                progressNumber: cubit.turbidityModel!.value?.toDouble()
                             ),
                           ),
                         ),
@@ -113,7 +113,7 @@ class CircleChartScreen extends StatelessWidget {
                             child: chart(
                                 name: 'Sound',
                                 maxNumber: 200,
-                                progressNumber: cubit.soundModel!.value
+                                progressNumber: cubit.soundModel!.value?.toDouble()
                             ),
                           ),
                         ),
@@ -135,12 +135,22 @@ class CircleChartScreen extends StatelessWidget {
                             child: chart(
                                 name: 'Gas',
                                 maxNumber: 500,
-                                progressNumber: cubit.gasModel!.value
+                                progressNumber: cubit.gasModel!.value?.toDouble()
                             ),
                           ),
                         ),
                       ),
                     ],
+                  ),
+                  defaultHeightSizeBox15,
+                  defaultButton(
+                      function: (){
+                        navigatorTo(
+                          context,
+                          ControlPanelScreen(),
+                        );
+                      },
+                      text: 'Control panel'
                   ),
                 ],),
             ),

@@ -54,4 +54,24 @@ class GetPhMeterDetailsError extends AppStates{
   GetPhMeterDetailsError(this.error);
 }
 
+//post servo
+class PostServoLoadingState extends AppStates{}
+class PostServoSuccessState extends AppStates{
+  PostServoSuccessState();
+}
+class PostServoErrorState extends AppStates{
+  final String error;
+  PostServoErrorState(this.error);
+}
+
+//post Push Motor
+class PostPushLoadingState extends AppStates{}
+class PostPushSuccessState extends AppStates{
+  PostPushSuccessState();
+}
+class PostPushErrorState extends AppStates{
+  final String error;
+  PostPushErrorState(this.error);
+}
+
 

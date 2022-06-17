@@ -102,8 +102,8 @@ Widget defaultFormField({
 
 
 Widget myDivider() => Padding(
-  padding: const EdgeInsetsDirectional.only(
-    start: 20,
+  padding: const EdgeInsets.symmetric(
+    horizontal: 10,
   ),
   child: Container(
     width: double.infinity,

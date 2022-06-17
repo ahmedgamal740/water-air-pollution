@@ -52,9 +52,7 @@ class AppCubit extends Cubit<AppStates>{
     emit(GetLastPhmeterDataLoading());
     DioHelper.getData(
       url: baseUrlPh,
-      query: {
-        'x-aio-key':baseKey,
-      }
+
     ).then((value){
       //print(value.data);
       phMeterModel = SensorModel.fromJson(value.data);
@@ -70,9 +68,7 @@ class AppCubit extends Cubit<AppStates>{
     emit(GetLastTurbidityDataLoading());
     DioHelper.getData(
         url: baseUrlTurbidity,
-        query: {
-          'x-aio-key':baseKey,
-        }
+
     ).then((value){
       print('turbidiy ${value.data}');
       turbidityModel = SensorModel.fromJson(value.data);
@@ -88,9 +84,7 @@ class AppCubit extends Cubit<AppStates>{
     emit(GetLastGasDataLoading());
     DioHelper.getData(
         url: baseUrlGas,
-        query: {
-          'x-aio-key':baseKey,
-        }
+
     ).then((value){
       print('GAs ${value.data}');
       gasModel = SensorModel.fromJson(value.data);
@@ -101,14 +95,35 @@ class AppCubit extends Cubit<AppStates>{
     });
   }
 
+  // late SensorModel gasModels;
+  // Future getLastGas() async{
+  //   emit(GetLastGasDataLoading());
+  //   return await DioHelper.getData(
+  //     url: baseUrlGas,
+  //
+  //   ).then((value){
+  //     print('GAs ${value.data}');
+  //     gasModel = SensorModel.fromJson(value.data);
+  //     emit(GetLastGasDataSuccess());
+  //   }).catchError((error){
+  //     print(error.toString());
+  //     emit(GetLastGasDataError(error.toString()));
+  //   });
+  //
+  // }
+  // Stream productsStream() async* {
+  //   while (true) {
+  //     await Future.delayed(const Duration(milliseconds: 500));
+  //     // gasModels = getLastGas() as SensorModel;
+  //     yield await getLastGas();
+  //   }
+  // }
+
   SensorModel? soundModel;
   void getLastSoundData(){
     emit(GetLastSoundDataLoading());
     DioHelper.getData(
         url: baseUrlSound,
-        query: {
-          'x-aio-key':baseKey,
-        }
     ).then((value){
       print('Sound ${value.data}');
       soundModel = SensorModel.fromJson(value.data);
@@ -118,7 +133,8 @@ class AppCubit extends Cubit<AppStates>{
       emit(GetLastSoundDataError(error.toString()));
     });
   }
-  List<AllRecordModel> parsePhotos(String responseBody) {
+
+  List<AllRecordModel> parseRecord(String responseBody) {
     final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
 
     return parsed.map<AllRecordModel>((json) => AllRecordModel.fromJson(json)).toList();
@@ -130,49 +146,43 @@ class AppCubit extends Cubit<AppStates>{
 
     //print(response.body);
     // Use the compute function to run parsePhotos in a separate isolate.
-    return parsePhotos(response.body);
+    return parseRecord(response.body);
   }
-  // List<AllRecordModel> allRecordModel = [];
-  //  void getPhMeterDetails(){
-  //   emit(GetPhMeterDetailsLoading());
-  //   DioHelper.getData(
-  //       url: 'v2/fisherman2022/feeds/phmeter/data',
-  //       query: {
-  //         'x-aio-key':baseKey,
-  //       }
-  //   ).then((value){
-  //     final parsed = jsonDecode(value.data).cast<Map<String, dynamic>>();
-  //     parsed.map<AllRecordModel>((json) {
-  //       allRecordModel.add(AllRecordModel.fromJson(json));
-  //     });
-  //     print(allRecordModel.first.value);
-  //     emit(GetPhMeterDetailsSuccess());
-  //   }).catchError((error){
-  //     print(error.toString());
-  //     emit(GetPhMeterDetailsError(error.toString()));
-  //   });
-  // }
-  // bool isPh = false;
-  // void changePh(){
-  //   isPh = true;
-  //   emit(AppChangeModeState());
-  // }
 
-  // bool isDark = false;
-  // void changeMode({bool? fromShared}){
-  //   if(fromShared != null){
-  //     isDark = fromShared;
-  //     emit(AppChangeModeState());
-  //   }
-  //   else{
-  //     isDark = !isDark;
-  //     CacheHelper.putBoolean(
-  //       key: 'isDark',
-  //       value: isDark,
-  //     ).then((value) {
-  //       emit(AppChangeModeState());
-  //     });
-  //   }
-  //
-  // }
+  void addServoMotor({
+    required int angleValue,
+  }){
+    emit(PostServoLoadingState());
+    DioHelper.postData(
+      url: servoMotor,
+      data: {
+        "angleValue": angleValue,
+
+      },
+    ).then((value) {
+      emit(PostServoSuccessState());
+    }).catchError((error){
+      print(error.toString());
+      emit(PostServoErrorState(error.toString()));
+    });
+  }
+
+  void addPushMotor({
+    required int delay,
+  }){
+    emit(PostPushLoadingState());
+    DioHelper.postData(
+      url: servoMotor,
+      data: {
+        "delay": delay,
+
+      },
+    ).then((value) {
+      emit(PostPushSuccessState());
+    }).catchError((error){
+      print(error.toString());
+      emit(PostPushErrorState(error.toString()));
+    });
+  }
+
 }

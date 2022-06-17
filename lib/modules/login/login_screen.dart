@@ -42,18 +42,11 @@ class LoginScreen extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            leading: const Padding(
-              padding: EdgeInsets.only(
-                left: 10
-              ),
-              child: CircleAvatar(
-                radius: 25,
-                child: Text('B'),
-              ),
-            ),
             title: Text(
-              'Team Name',
-              style: Theme.of(context).textTheme.bodyText1,
+              'Pollution Detection',
+              style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                color: Colors.white
+              ),
             ),
           ),
           body: Center(

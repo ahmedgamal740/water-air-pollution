@@ -33,10 +33,18 @@ class HomeScreen extends StatelessWidget {
             ),
             body: cubit.screens[cubit.currentIndex],
             bottomNavigationBar: CircleNavBar(
-              activeIcons: const [
-                Icon(Icons.person, color: Colors.deepPurple),
-                Icon(Icons.home, color: Colors.deepPurple),
-                Icon(Icons.save, color: Colors.deepPurple),
+              activeIcons: [
+                const Icon(Icons.person, color: Colors.deepPurple),
+                InkWell(
+                    onDoubleTap: (){
+                      AppCubit.get(context).getLastSoundData();
+                      AppCubit.get(context).getLastGasData();
+                      AppCubit.get(context).getLastTurbidityData();
+                      AppCubit.get(context).getLastTurbidityData();
+                    },
+                    child: const Icon(Icons.home, color: Colors.deepPurple)
+                ),
+                const Icon(Icons.save, color: Colors.deepPurple),
               ],
               inactiveIcons: const [
                 Text("Profile"),

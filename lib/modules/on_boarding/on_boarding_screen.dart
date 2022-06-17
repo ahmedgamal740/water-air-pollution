@@ -31,7 +31,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     BoardingModel(
         'assets/images/img1.jpg',
         'Water Pollution',
-        'water pollution control is to be able to monitor the actual level of water pollution.',
+        'Water pollution control is to be able to monitor the actual level of water pollution.',
     ),
     BoardingModel(
       'assets/images/img2.jpg',
@@ -41,7 +41,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     BoardingModel(
       'assets/images/img3.jpg',
       'Data Analysis',
-      'These recordings enable us to analyze the data and find out the problem',
+      'These recordings enable us to analyze the data and find out the problem.',
     ),
   ];
 

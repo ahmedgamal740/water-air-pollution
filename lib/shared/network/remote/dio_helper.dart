@@ -5,7 +5,7 @@ class DioHelper{
   static init(){
     dio = Dio(
       BaseOptions(
-        baseUrl: 'https://io.adafruit.com/api/',
+        baseUrl: 'http://detector.somee.com/',
         receiveDataWhenStatusError: true,
       ),
     );
