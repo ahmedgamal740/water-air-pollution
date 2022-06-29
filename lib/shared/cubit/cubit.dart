@@ -1,6 +1,5 @@
 
 import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,7 +8,7 @@ import 'package:http/http.dart' as http;
 import '../../models/all_record_model.dart';
 import '../../models/sensor_model.dart';
 import '../../models/user_model.dart';
-import '../../modules/circle_chart.dart';
+import '../../modules/home_screen.dart';
 import '../../modules/profile_screen.dart';
 import '../../modules/save_screen.dart';
 import '../components/global_variable.dart';
@@ -21,7 +20,7 @@ class AppCubit extends Cubit<AppStates>{
   int currentIndex = 1;
   List<Widget> screens = [
     ProfileScreen(),
-    const CircleChartScreen(),
+    const HomeScreen(),
     SaveScreen(),
   ];
   List<String> titles = [
@@ -35,7 +34,7 @@ class AppCubit extends Cubit<AppStates>{
     emit(AppChangeBottomNavigationBar());
   }
 
-
+  
   void getUser(){
     emit(GetUserLoadingState());
     FirebaseFirestore.instance.collection('users').doc(uId).get().then((value) {

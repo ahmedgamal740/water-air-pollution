@@ -238,10 +238,3 @@ class RecordList extends StatelessWidget {
   );
 }
 
-// Container(
-// width: 300.0,
-// height: 100.0,
-// child: Sparkline(
-// data: data,
-// ),
-// ),

@@ -1,9 +1,4 @@
-// {
-// "id": 148,
-// "value": 220,
-// "dateTime": "2022-06-16T12:20:11.1873642",
-// "sensorName": "Gaz"
-// }
+
 class SensorModel {
   int? id;
   dynamic value;

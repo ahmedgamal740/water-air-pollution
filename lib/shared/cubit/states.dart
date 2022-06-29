@@ -75,3 +75,10 @@ class PostPushErrorState extends AppStates{
 }
 
 
+//get image sensor
+class GetImageSensorLoadingState extends AppStates{}
+class GetImageSensorSuccessState extends AppStates{}
+class GetImageSensorErrorState extends AppStates{
+  final String error;
+  GetImageSensorErrorState(this.error);
+}

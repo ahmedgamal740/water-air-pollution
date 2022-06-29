@@ -11,8 +11,8 @@ import '../shared/styles/colors.dart';
 import 'control_panel_screen.dart';
 
 
-class CircleChartScreen extends StatelessWidget {
-  const CircleChartScreen({Key? key}) : super(key: key);
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +86,7 @@ class CircleChartScreen extends StatelessWidget {
                             ),
                             child: chart(
                                 name: 'Turbidity',
-                                maxNumber: 1000,
+                                maxNumber: 1200,
                                 progressNumber: cubit.turbidityModel!.value?.toDouble()
                             ),
                           ),

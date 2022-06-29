@@ -6,8 +6,8 @@ import 'package:pollution/shared/cubit/states.dart';
 import '../shared/components/constants.dart';
 import '../shared/components/global_variable.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class LayoutScreen extends StatelessWidget {
+  const LayoutScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +17,17 @@ class HomeScreen extends StatelessWidget {
         var cubit = AppCubit.get(context);
         return Scaffold(
             appBar: AppBar(
-              title: Text(
-                cubit.titles[cubit.currentIndex],
+              title: Row(
+                children: [
+                  CircleAvatar(
+                    radius: 20,
+                    backgroundImage: AssetImage('assets/images/log.png'),
+                  ),
+                  defaultWidthSizeBox,
+                  Text(
+                    cubit.titles[cubit.currentIndex],
+                  ),
+                ],
               ),
               actions: [
                 if(userModel != null)

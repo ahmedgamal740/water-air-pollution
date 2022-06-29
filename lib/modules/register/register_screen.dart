@@ -2,7 +2,7 @@ import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../shared/components/components.dart';
-import '../../layout/home.dart';
+import '../../layout/layout_screen.dart';
 import '../../shared/components/constants.dart';
 import '../../shared/network/local/cache_helper.dart';
 import '../../shared/styles/colors.dart';
@@ -30,7 +30,7 @@ class RegisterScreen extends StatelessWidget {
           ).then((value) {
             navigateAndFinish(
               context,
-              const HomeScreen(),
+              const LayoutScreen(),
             );
           });
         }
@@ -45,11 +45,20 @@ class RegisterScreen extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: Text(
-              'Pollution Detection',
-              style: Theme.of(context).textTheme.bodyText1?.copyWith(
-                color: Colors.white
-              ),
+            title: Row(
+              children: [
+                CircleAvatar(
+                  radius: 20,
+                  backgroundImage: AssetImage('assets/images/log.png'),
+                ),
+                defaultWidthSizeBox,
+                Text(
+                  'Pollution Detection',
+                  style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                    color: Colors.white
+                  ),
+                ),
+              ],
             ),
           ),
           body: Center(

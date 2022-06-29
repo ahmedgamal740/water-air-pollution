@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pollution/layout/home.dart';
+import 'package:pollution/layout/layout_screen.dart';
 import 'package:pollution/modules/login/cubit/cubit.dart';
 import 'package:pollution/shared/components/global_variable.dart';
 import 'package:pollution/shared/cubit/bloc_observer.dart';
@@ -28,7 +28,7 @@ void main() {
       uId = CacheHelper.getData(key: 'uId');
       if(onBoarding != null){
         if(uId != null){
-          widget = const HomeScreen();
+          widget = const LayoutScreen();
         }else{
           widget = LoginScreen();
         }

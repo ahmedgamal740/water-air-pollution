@@ -8,6 +8,7 @@ ThemeData lightTheme = ThemeData(
   primarySwatch: defaultColor,
   scaffoldBackgroundColor: Colors.white,
   appBarTheme:  const AppBarTheme(
+    toolbarHeight: 70,
     backgroundColor: defaultColor,
     titleSpacing: 10,
     elevation: 0.0,

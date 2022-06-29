@@ -29,21 +29,66 @@ class ControlPanelScreen extends StatelessWidget {
             child: Column(
               children: [
                 Text(
+                  'Push Motor',
+                  style: Theme.of(context).textTheme.bodyText1,
+                ),
+                defaultHeightSizeBox15,
+                Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                          width: 2,
+                          color: Colors.black38
+                      ),
+                      borderRadius: BorderRadius.circular(30),
+                      color: Colors.grey[300]
+                  ),
+                  padding: const EdgeInsets.all(20),
+                  child: Form(
+                    key: formKey,
+                    child: Column(
+                      children: [
+                        defaultFormField(
+                          controller: secondsController,
+                          type: TextInputType.number,
+                          validate: (value){
+                            if(value.isEmpty){
+                              return 'please enter your number';
+                            }
+                            return null;
+                          },
+                          label: 'Seconds',
+                          prefix: Icons.access_time_outlined,
+                        ),
+                        defaultHeightSizeBox15,
+                        defaultButton(
+                            function: (){
+                              if(formKey.currentState!.validate()){
+                                AppCubit.get(context).addPushMotor(delay: int.parse(secondsController.text));
+                              }
+                            },
+                            text: 'Go'
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                defaultHeightSizeBox15,
+                Text(
                   'Servo Motor',
                   style: Theme.of(context).textTheme.bodyText1,
                 ),
                 defaultHeightSizeBox15,
                 Container(
                   decoration: BoxDecoration(
-                    border: Border.all(
-                        width: 2,
-                        color: Colors.black38
-                    ),
-                    borderRadius: BorderRadius.circular(30),
-                    color: Colors.grey[300]
+                      border: Border.all(
+                          width: 2,
+                          color: Colors.black38
+                      ),
+                      borderRadius: BorderRadius.circular(30),
+                      color: Colors.grey[300]
                   ),
                   padding: const EdgeInsets.symmetric(
-                    vertical: 10
+                      vertical: 10
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -99,51 +144,6 @@ class ControlPanelScreen extends StatelessWidget {
                         ],
                       ),
                     ],
-                  ),
-                ),
-                defaultHeightSizeBox15,
-                Text(
-                  'Push Motor',
-                  style: Theme.of(context).textTheme.bodyText1,
-                ),
-                defaultHeightSizeBox15,
-                Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                          width: 2,
-                          color: Colors.black38
-                      ),
-                      borderRadius: BorderRadius.circular(30),
-                      color: Colors.grey[300]
-                  ),
-                  padding: const EdgeInsets.all(20),
-                  child: Form(
-                    key: formKey,
-                    child: Column(
-                      children: [
-                        defaultFormField(
-                          controller: secondsController,
-                          type: TextInputType.number,
-                          validate: (value){
-                            if(value.isEmpty){
-                              return 'please enter your number';
-                            }
-                            return null;
-                          },
-                          label: 'Seconds',
-                          prefix: Icons.access_time_outlined,
-                        ),
-                        defaultHeightSizeBox15,
-                        defaultButton(
-                            function: (){
-                              if(formKey.currentState!.validate()){
-                                AppCubit.get(context).addPushMotor(delay: int.parse(secondsController.text));
-                              }
-                            },
-                            text: 'Go'
-                        ),
-                      ],
-                    ),
                   ),
                 ),
               ],
