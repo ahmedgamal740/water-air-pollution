@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
 import '../styles/colors.dart';
-
 Widget defaultFallback({
   required String text,
 }) => Center(

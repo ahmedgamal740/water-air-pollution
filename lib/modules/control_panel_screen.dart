@@ -28,6 +28,21 @@ class ControlPanelScreen extends StatelessWidget {
             padding: const EdgeInsets.all(10.0),
             child: Column(
               children: [
+                Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                          width: 2,
+                          color: Colors.black38
+                      ),
+                      borderRadius: BorderRadius.circular(30),
+                  ),
+                  width: double.infinity,
+                  height: 200,
+                  child: Image(
+                    image: AssetImage('assets/images/img.jpg'),
+                  ),
+                ),
+                defaultHeightSizeBox15,
                 Text(
                   'Push Motor',
                   style: Theme.of(context).textTheme.bodyText1,

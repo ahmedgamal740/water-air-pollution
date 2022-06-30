@@ -187,18 +187,4 @@ Widget chart({
       defaultHeightSizeBox,
     ]
 );
-// Widget chart =  CircleChart(
-//     progressNumber: 100,
-//     maxNumber: 500,
-//     height: 200,
-//     width: 300,
-//     progressColor: defaultColor,
-//     children:
-//     const [
-//       Icon(Icons.keyboard_arrow_up_outlined),
-//       defaultHeightSizeBox,
-//       Text('Gas Sensor',),
-//       defaultHeightSizeBox,
-//     ]
-// );
 

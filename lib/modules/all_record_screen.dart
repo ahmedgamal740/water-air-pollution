@@ -29,10 +29,7 @@ class AllRecordsScreen extends StatelessWidget {
                   child: Text('An error has occurred!'),
                 );
               } else if (snapshot.hasData) {
-                // List modelValue = [];
-                // snapshot.data!.forEach((element) {
-                //   modelValue.addAll(element.value!);
-                // });
+
                 return RecordList(
                     model: snapshot.data!,
                 );
