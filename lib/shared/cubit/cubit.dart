@@ -171,7 +171,7 @@ class AppCubit extends Cubit<AppStates>{
   }){
     emit(PostPushLoadingState());
     DioHelper.postData(
-      url: servoMotor,
+      url: pushMotor,
       data: {
         "delay": delay,
 

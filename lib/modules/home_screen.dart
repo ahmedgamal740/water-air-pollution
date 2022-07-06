@@ -86,7 +86,7 @@ class HomeScreen extends StatelessWidget {
                             ),
                             child: chart(
                                 name: 'Turbidity',
-                                maxNumber: 1200,
+                                maxNumber: 3500,
                                 progressNumber: cubit.turbidityModel!.value?.toDouble()
                             ),
                           ),
@@ -112,7 +112,7 @@ class HomeScreen extends StatelessWidget {
                             ),
                             child: chart(
                                 name: 'Sound',
-                                maxNumber: 200,
+                                maxNumber: 1200,
                                 progressNumber: cubit.soundModel!.value?.toDouble()
                             ),
                           ),
